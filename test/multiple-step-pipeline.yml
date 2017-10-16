@@ -1,0 +1,18 @@
+image: ubuntu
+
+pipelines:
+  default:
+    - step:
+          name: test
+          script:
+            - echo "test stuff"
+    - step:
+          name: build
+          image: ubuntu2
+          script:
+            - echo "building stuff"
+    - step:
+          name: deploy all the things
+          script:
+            - echo "deploying stuff"
+     

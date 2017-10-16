@@ -1,0 +1,33 @@
+{
+  "name": "bbrun",
+  "version": "0.1.0",
+  "description": "Run your Bitbucket Pipelines locally",
+  "main": "index.js",
+  "scripts": {
+    "prettier": "prettier --write *.js src/*.js test/*.js",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mserranom/bbrun.git"
+  },
+  "author": "mserranom@gmail.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mserranom/bbrun/issues"
+  },
+  "homepage": "https://github.com/mserranom/bbrun#readme",
+  "engines": {
+    "node": "8.5.0",
+    "npm": "5.4.2"
+  },
+  "dependencies": {
+    "js-yaml": "3.10.0",
+    "meow": "3.7.0",
+    "shelljs": "0.7.8"
+  },
+  "devDependencies": {
+    "jest": "21.2.1",
+    "prettier": "1.7.4"
+  }
+}

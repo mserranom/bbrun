@@ -1,0 +1,50 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`integration tests multiple step pipelines executes all steps 1`] = `
+"running \\"test\\" in \\"ubuntu\\" image
+shell:
+  docker run -P -v /Users/miguel/workspace/github/bbrun:/ws -w /ws ubuntu echo \\"test stuff\\"
+running \\"build\\" in \\"ubuntu2\\" image
+shell:
+  docker run -P -v /Users/miguel/workspace/github/bbrun:/ws -w /ws ubuntu2 echo \\"building stuff\\"
+running \\"deploy all the things\\" in \\"ubuntu\\" image
+shell:
+  docker run -P -v /Users/miguel/workspace/github/bbrun:/ws -w /ws ubuntu echo \\"deploying stuff\\"
+"
+`;
+
+exports[`integration tests multiple step pipelines executes all steps 2`] = `""`;
+
+exports[`integration tests single step pipelines executes a step in single step pipeline 1`] = `
+"running \\"test\\" in \\"ubuntu\\" image
+shell:
+  docker run -P -v /Users/miguel/workspace/github/bbrun:/ws -w /ws ubuntu echo \\"testing stuff\\"
+"
+`;
+
+exports[`integration tests single step pipelines executes a step in single step pipeline 2`] = `""`;
+
+exports[`integration tests single step pipelines executes all defined steps in single step pipeline 1`] = `
+"running \\"test\\" in \\"ubuntu\\" image
+shell:
+  docker run -P -v /Users/miguel/workspace/github/bbrun:/ws -w /ws ubuntu echo \\"testing stuff\\"
+"
+`;
+
+exports[`integration tests single step pipelines executes all defined steps in single step pipeline 2`] = `""`;
+
+exports[`integration tests single step pipelines executes all defined steps in single step pipeline with no name 1`] = `
+"running \\"default\\" in \\"ubuntu\\" image
+shell:
+  docker run -P -v /Users/miguel/workspace/github/bbrun:/ws -w /ws ubuntu echo \\"testing stuff\\"
+"
+`;
+
+exports[`integration tests single step pipelines executes all defined steps in single step pipeline with no name 2`] = `""`;
+
+exports[`integration tests single step pipelines fails when step doesn't exist 1`] = `""`;
+
+exports[`integration tests single step pipelines fails when step doesn't exist 2`] = `
+"step \\"fake_step\\" cannot be found in test/pipeline-one-step.yml
+"
+`;

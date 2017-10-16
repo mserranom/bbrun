@@ -1,0 +1,8 @@
+pipelines:
+  default:
+    - step:
+          name: test
+          image: ubuntu
+          script:
+            - echo "testing stuff"
+     
