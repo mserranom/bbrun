@@ -1,8 +1,8 @@
-# bbrun
-Run Bitbucket Pipelines locally
+# BBRun
+`bbrun` is a small command line tool to execute [Bitbucket Pipelines](https://confluence.atlassian.com/bitbucket/configure-bitbucket-pipelines-yml-792298910.html) locally.
 
 ## Usage
-'''bash
+```bash
 	Usage
 	  $ bbrun <step> <options>
 
@@ -26,8 +26,7 @@ Run Bitbucket Pipelines locally
         $ bbrun test --env EDITOR=vim,FOO=bar
       Define a global environment variable and save it in ~/.bbrun
         $ bbrun --save-env EDITOR=vim
-'''
+```
 
 ## Build and Test
-
 `npm install && npm test`
