@@ -3,8 +3,8 @@
 
 ## Usage
 ```bash
-	Usage
-	  $ bbrun <step> <options>
+  Usage
+      $ bbrun <step> <options>
 
 	Options
       --template, pipeline template, defaults to "bitbucket-pipelines.yml"
