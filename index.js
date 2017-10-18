@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 "use strict";
 const meow = require("meow");
 const fs = require("fs");
@@ -22,6 +24,7 @@ const cli = meow(
       --save-env, saves an environment variable in env-file
       --env-file, file storing environment variables, defaults to "~/.bbrun"
       --dry-run,  performs dry run, printing the docker command
+      --interactive, starts an interactive /bin/bash session in the container
       --help, prints this very guide
 
     Examples:
@@ -62,39 +65,48 @@ const cli = meow(
       "env-file": {
         type: "string",
         alias: "f"
+      },
+      interactive: {
+        type: "boolean",
+        alias: "i",
+        default: false
       }
     }
   }
 );
 
-const template_input = cli.flags.template || BB_TEMPLATE;
-const env_location = cli.flags.envFile || BB_ENV;
+const stepToRun = cli.input[0];
+
+const templateInput = cli.flags.template || BB_TEMPLATE;
+const envLocation = cli.flags.envFile || BB_ENV;
 
 if (cli.flags.saveEnv) {
-  env.save(cli.flags.saveEnv, env_location);
+  env.save(cli.flags.saveEnv, envLocation);
   process.exit();
 }
 
 docker.checkExists();
 
-const bbConfig = template.read(`${pwd()}/${template_input}`);
+const bbConfig = template.read(`${pwd()}/${templateInput}`);
 
-const stepToRun = cli.input[0];
 const steps = template.getSteps(bbConfig);
 
 if (stepToRun) {
   if (!steps.some(step => step.name === stepToRun)) {
-    console.error(`step "${stepToRun}" cannot be found in ${template_input}`);
+    console.error(`step "${stepToRun}" cannot be found in ${templateInput}`);
     process.exit(1);
   } else {
     execStep(steps.find(step => step.name === stepToRun));
   }
+} else if (cli.flags.interactive) {
+  console.warn("no step defined, running interactive session for first step");
+  execStep(steps[0]);
 } else {
   steps.forEach(step => execStep(step));
 }
 
 function execStep(stepConfig) {
-  const globalEnv = env.load(env_location);
+  const globalEnv = env.load(envLocation);
   const executionEnv = cli.flags.env ? env.parseVars(cli.flags.env) : [];
   const commands = [].concat(
     globalEnv.map(x => `export ${x}`),
@@ -103,5 +115,10 @@ function execStep(stepConfig) {
   );
 
   console.log(`running "${stepConfig.name}" in "${stepConfig.image}" image`);
-  docker.run(commands, stepConfig.image, cli.flags.dryRun);
+  docker.run(
+    commands,
+    stepConfig.image,
+    cli.flags.dryRun,
+    cli.flags.interactive
+  );
 }

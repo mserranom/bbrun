@@ -1,6 +1,8 @@
 function run(options) {
   const exec = require("shelljs").exec;
-  return exec(`node index.js ${options} --env-file fake_file`, { silent: true });
+  return exec(`node index.js ${options} --env-file fake_file`, {
+    silent: true
+  });
 }
 
 describe("integration tests", () => {
