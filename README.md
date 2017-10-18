@@ -1,4 +1,4 @@
-# BBRun
+# Bitbucket Pipelines Runner
 `bbrun` is a small command line tool to execute [Bitbucket Pipelines](https://confluence.atlassian.com/bitbucket/configure-bitbucket-pipelines-yml-792298910.html) locally.
 
 ## Usage
