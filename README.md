@@ -4,7 +4,7 @@
 [![Build Status](https://travis-ci.org/mserranom/bbrun.svg?branch=master)](https://travis-ci.org/mserranom/bbrun)
 
 ## Usage
-```bash
+```
   Usage
     $ bbrun <step> <options>
 
