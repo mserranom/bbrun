@@ -1,0 +1,12 @@
+language: node_js
+sudo: false 
+node_js:
+  - "8"
+script:
+  - npm install && npm test
+deploy:
+  provider: npm
+  skip_cleanup: true
+  email: mserranom@gmail.com
+  api_key:
+    secure: FX+e8xv+oiKfaX7V6aIoDiZlKv7uRwP/DqzlR7I5+XeDoC8KC04sy3SsTpDGtcWI/UMyx0uRdUyL8hjMxHG2WGzhoAaVQ7ApuD1GXsfMUCDUVAEL5aN+aSdfduufOdKbsnE2Z6gGs8UBd4pxFgHsknLdXx6XQ609WgJFpk44vNwuowtW6mUncpOuWVvP6kPvGAmiU7HHzuqx/mP6Kmyvaw4VULUVI+1Yp85xgXO0OR9DDCVPLm+GsdMy1ksWVafUOEL29Eu4g//gU7vrXm80jU8NgRQf69fkfrLgdfmlbomzgZsZy5atl1lWF1LOkaCJA4N37TlxRMs90tw3vYvgqJs5krKuqgIsO9YWg4v3sAJDv+josmFheQQouSBXRkYIomGmaCsKOh3rZZm/AJC1I0+Ip0bOsA1XNZ81ApfGwezulBUbu3WW2zuopxE5S19lMzfH/PDMXQy/ZZD9pflg/6ZGaXajvxnOe5/M3jsGEoxpzAuheRlYadxvxUottnt7gWY3PbPTBgHNoJ0VEA8me7Y6n+nC+Ot1b3gErKkraIqtyh2dNu0JaBaSabGetk0s+PBBYwX/qMOx6Y06HVesQRBfIkx7bIPyKrxoorzyGU7U0mYK2pXUp1Aai4KRnb+VQ3wAnxF3Gy6aAMKNCVB/AOAN29smMWWwHYB/RBbyY4Y=
