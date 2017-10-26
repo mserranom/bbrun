@@ -3,7 +3,39 @@
 
 [![Build Status](https://travis-ci.org/mserranom/bbrun.svg?branch=master)](https://travis-ci.org/mserranom/bbrun)
 
+
+## Install
+
+Install `bbrun` using `npm`:
+
+```bash
+$ npm install -g bbrun
+```
+
 ## Usage
+
+Run any step defined in your `bitbucket-pipelines.yml` template:
+
+```yaml
+pipelines:
+  default:
+    - step:
+          name: hello
+          image: ubuntu2
+          script:
+            - echo "hello world!"
+```
+
+Run `bbrun` from your project path:
+
+```bash
+$ bbrun hello
+running "build" in "atlassian/default-image" image...
+hello world!
+```
+
+### Options
+
 ```
   Usage
     $ bbrun <step> <options>
@@ -32,7 +64,13 @@
 ```
 
 ## Build and Test
-`npm install && npm test`
 
-## Install locally
-`npm install && npm link`
+```bash
+npm install && npm test
+```
+
+### Install locally
+
+```bash
+$ npm install && npm link
+```

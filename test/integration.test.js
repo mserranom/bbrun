@@ -5,18 +5,22 @@ function run(options) {
   });
 }
 
+const PWD = require("shelljs").pwd();
+
+const norm = input => input.replace(new RegExp(PWD, "g"), "PWD");
+
 describe("integration tests", () => {
   describe("single step pipelines", () => {
     it("executes a step in single step pipeline", () => {
       const res = run("test --template test/pipeline-one-step.yml --dry-run");
-      expect(res.stdout).toMatchSnapshot();
+      expect(norm(res.stdout)).toMatchSnapshot();
       expect(res.stderr).toMatchSnapshot();
       expect(res.code).toBe(0);
     });
 
     it("executes all defined steps in single step pipeline", () => {
       const res = run("--template test/pipeline-one-step.yml --dry-run");
-      expect(res.stdout).toMatchSnapshot();
+      expect(norm(res.stdout)).toMatchSnapshot();
       expect(res.stderr).toMatchSnapshot();
       expect(res.code).toBe(0);
     });
@@ -25,7 +29,7 @@ describe("integration tests", () => {
       const res = run(
         "--template test/pipeline-one-step-no-name.yml --dry-run"
       );
-      expect(res.stdout).toMatchSnapshot();
+      expect(norm(res.stdout)).toMatchSnapshot();
       expect(res.stderr).toMatchSnapshot();
       expect(res.code).toBe(0);
     });
@@ -34,7 +38,7 @@ describe("integration tests", () => {
       const res = run(
         "fake_step --template test/pipeline-one-step.yml --dry-run"
       );
-      expect(res.stdout).toMatchSnapshot();
+      expect(norm(res.stdout)).toMatchSnapshot();
       expect(res.stderr).toMatchSnapshot();
       expect(res.code).toBe(1);
     });
@@ -43,7 +47,7 @@ describe("integration tests", () => {
   describe("multiple step pipelines", () => {
     it("executes all steps", () => {
       const res = run("--template test/multiple-step-pipeline.yml --dry-run");
-      expect(res.stdout).toMatchSnapshot();
+      expect(norm(res.stdout)).toMatchSnapshot();
       expect(res.stderr).toMatchSnapshot();
       expect(res.code).toBe(0);
     });
