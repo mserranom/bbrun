@@ -31,11 +31,9 @@ function checkExists() {
 }
 
 function run(commands, image, dryRun, interactive) {
-  const script = `sh ${BUILD_SCRIPT}`;
-
   const cmd = interactive
     ? `run -P -it --entrypoint /bin/bash -v ${pwd()}:/ws -w /ws ${image}`
-    : `run -P -v ${pwd()}:/ws -w /ws ${image} ${script}`;
+    : `run --entrypoint "/bin/sh" -P -v ${pwd()}:/ws -w /ws ${image} ${BUILD_SCRIPT}`;
 
   if (dryRun) {
     prepareBuildScript(commands);
