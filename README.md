@@ -14,7 +14,7 @@ $ npm install -g bbrun
 
 ## Usage
 
-Run any step defined in your `bitbucket-pipelines.yml` template:
+With `bbrun` you can execute any step defined in your `bitbucket-pipelines.yml` template:
 
 ```yaml
 pipelines:
@@ -26,7 +26,7 @@ pipelines:
             - echo "hello world!"
 ```
 
-Run `bbrun` from your project path:
+Run `bbrun` straight from your project path:
 
 ```bash
 $ bbrun hello
