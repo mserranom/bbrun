@@ -33,7 +33,7 @@ function checkExists() {
 function run(commands, image, dryRun, interactive) {
   const cmd = interactive
     ? `run -P -it --entrypoint /bin/bash -v ${pwd()}:/ws -w /ws ${image}`
-    : `run --entrypoint "/bin/sh" -P -v ${pwd()}:/ws -w /ws ${image} ${BUILD_SCRIPT}`;
+    : `run --entrypoint /bin/bash -P -v ${pwd()}:/ws -w /ws ${image} ${BUILD_SCRIPT}`;
 
   if (dryRun) {
     prepareBuildScript(commands);

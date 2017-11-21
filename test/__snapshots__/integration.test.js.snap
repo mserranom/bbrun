@@ -3,13 +3,13 @@
 exports[`integration tests multiple step pipelines executes all steps 1`] = `
 "running \\"test\\" in \\"ubuntu\\" image
 shell:
-  docker run --entrypoint \\"/bin/sh\\" -P -v PWD:/ws -w /ws ubuntu .bbrun.sh
+  docker run --entrypoint /bin/bash -P -v PWD:/ws -w /ws ubuntu .bbrun.sh
 running \\"build\\" in \\"ubuntu2\\" image
 shell:
-  docker run --entrypoint \\"/bin/sh\\" -P -v PWD:/ws -w /ws ubuntu2 .bbrun.sh
+  docker run --entrypoint /bin/bash -P -v PWD:/ws -w /ws ubuntu2 .bbrun.sh
 running \\"deploy all the things\\" in \\"ubuntu\\" image
 shell:
-  docker run --entrypoint \\"/bin/sh\\" -P -v PWD:/ws -w /ws ubuntu .bbrun.sh
+  docker run --entrypoint /bin/bash -P -v PWD:/ws -w /ws ubuntu .bbrun.sh
 "
 `;
 
@@ -18,7 +18,7 @@ exports[`integration tests multiple step pipelines executes all steps 2`] = `""`
 exports[`integration tests single step pipelines executes a step in single step pipeline 1`] = `
 "running \\"test\\" in \\"ubuntu\\" image
 shell:
-  docker run --entrypoint \\"/bin/sh\\" -P -v PWD:/ws -w /ws ubuntu .bbrun.sh
+  docker run --entrypoint /bin/bash -P -v PWD:/ws -w /ws ubuntu .bbrun.sh
 "
 `;
 
@@ -27,7 +27,7 @@ exports[`integration tests single step pipelines executes a step in single step 
 exports[`integration tests single step pipelines executes all defined steps in single step pipeline 1`] = `
 "running \\"test\\" in \\"ubuntu\\" image
 shell:
-  docker run --entrypoint \\"/bin/sh\\" -P -v PWD:/ws -w /ws ubuntu .bbrun.sh
+  docker run --entrypoint /bin/bash -P -v PWD:/ws -w /ws ubuntu .bbrun.sh
 "
 `;
 
@@ -36,7 +36,7 @@ exports[`integration tests single step pipelines executes all defined steps in s
 exports[`integration tests single step pipelines executes all defined steps in single step pipeline with no name 1`] = `
 "running \\"default\\" in \\"ubuntu\\" image
 shell:
-  docker run --entrypoint \\"/bin/sh\\" -P -v PWD:/ws -w /ws ubuntu .bbrun.sh
+  docker run --entrypoint /bin/bash -P -v PWD:/ws -w /ws ubuntu .bbrun.sh
 "
 `;
 
