@@ -34,3 +34,35 @@ build script:
 	echo \\"testing stuff\\"
 "
 `;
+
+exports[`template with multiple steps in the default pipeline should execute a single step by name 1`] = `
+"executing step \\"step2\\" in \\"atlassian/default-image:latest\\"
+docker command:
+	docker run  -P -v PWD:/ws -w /ws atlassian/default-image:latest chmod +x .bbrun.sh && ./.bbrun.sh
+build script:
+	set -e
+	echo \\"step2\\"
+"
+`;
+
+exports[`template with multiple steps in the default pipeline should execute all the default steps when no argument is provided 1`] = `
+"executing step in \\"atlassian/default-image:latest\\"
+docker command:
+	docker run  -P -v PWD:/ws -w /ws atlassian/default-image:latest chmod +x .bbrun.sh && ./.bbrun.sh
+build script:
+	set -e
+	echo \\"testing stuff\\"
+executing step in \\"atlassian/default-image:latest\\"
+docker command:
+	docker run  -P -v PWD:/ws -w /ws atlassian/default-image:latest chmod +x .bbrun.sh && ./.bbrun.sh
+build script:
+	set -e
+	echo \\"step2\\"
+executing step in \\"ubuntu\\"
+docker command:
+	docker run  -P -v PWD:/ws -w /ws ubuntu chmod +x .bbrun.sh && ./.bbrun.sh
+build script:
+	set -e
+	echo \\"step3\\"
+"
+`;

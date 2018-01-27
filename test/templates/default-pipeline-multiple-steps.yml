@@ -1,0 +1,14 @@
+pipelines:
+  default:
+    - step:
+          script:
+            - echo "testing stuff"
+    - step:
+          name: step2
+          script:
+            - echo "step2"
+    - step:
+          image: ubuntu
+          script:
+            - echo "step3"
+     
