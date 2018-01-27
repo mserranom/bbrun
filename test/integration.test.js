@@ -87,7 +87,15 @@ describe("template with multiple steps in the default pipeline", () => {
   });
   it("should understand asterisk branches", () => {
     const res = run(
-      '"branch step 2" master_step_2 --pipeline branches:** --template test/templates/pipeline-multiple-steps.yml --dry-run'
+      '"branch step 2" --pipeline branches:** --template test/templates/pipeline-multiple-steps.yml --dry-run'
+    );
+    expect(norm(res.stdout)).toMatchSnapshot();
+    expect(res.stderr).toBe("");
+    expect(res.code).toBe(0);
+  });
+  it("should execute all the steps in a branch if no step provided", () => {
+    const res = run(
+      "--pipeline branches:master --template test/templates/pipeline-multiple-steps.yml --dry-run"
     );
     expect(norm(res.stdout)).toMatchSnapshot();
     expect(res.stderr).toBe("");

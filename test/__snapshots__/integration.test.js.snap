@@ -87,6 +87,22 @@ build script:
 "
 `;
 
+exports[`template with multiple steps in the default pipeline should execute all the steps in a branch if no step provided 1`] = `
+"executing step in \\"atlassian/default-image:latest\\"
+docker command:
+	docker run  -P -v PWD:/ws -w /ws atlassian/default-image:latest chmod +x .bbrun.sh && ./.bbrun.sh
+build script:
+	set -e
+	echo \\"testing stuff in master branch\\"
+executing step in \\"atlassian/default-image:latest\\"
+docker command:
+	docker run  -P -v PWD:/ws -w /ws atlassian/default-image:latest chmod +x .bbrun.sh && ./.bbrun.sh
+build script:
+	set -e
+	echo \\"master step 2\\"
+"
+`;
+
 exports[`template with multiple steps in the default pipeline should understand asterisk branches 1`] = `
 "executing step \\"branch step 2\\" in \\"atlassian/default-image:latest\\"
 docker command:
