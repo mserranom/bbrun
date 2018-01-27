@@ -14,7 +14,7 @@ function deleteBuildScript() {
 
 function prepareBuildScript(commands) {
   deleteBuildScript();
-  const script = "#!/usr/bin/env bash\nset -e\n" + commands.join("\n");
+  const script = "#!/usr/bin/env bash\n" + commands.join("\n");
   fs.writeFileSync(BUILD_SCRIPT, script);
 }
 
@@ -33,11 +33,11 @@ function checkExists() {
 function run(commands, image, dryRun, interactive) {
   const cmd = interactive
     ? `run -P -it --entrypoint=/bin/bash -v ${pwd()}:/ws -w /ws ${image}`
-    : `run  -P -v ${pwd()}:/ws -w /ws ${image} chmod +x ${BUILD_SCRIPT} && ./${BUILD_SCRIPT}`;
+    : `run  -P -v ${pwd()}:/ws -w /ws ${image} sh ${BUILD_SCRIPT}`;
 
   if (dryRun) {
-    prepareBuildScript(commands);
-    console.log(`shell:\n  docker ${cmd}`);
+    console.log(`docker command:\n\tdocker ${cmd}`);
+    console.log(`build script:\n\t${commands.join("\n\t")}`);
   } else if (interactive) {
     console.log(`opening shell for image "${image}, run "s"`);
     child_process.execFileSync("docker", cmd.split(" "), {

@@ -1,0 +1,6 @@
+pipelines:
+  - step:
+        image: ubuntu
+        script:
+          - echo "testing stuff"
+     

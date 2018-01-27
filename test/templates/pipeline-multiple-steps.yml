@@ -1,0 +1,32 @@
+pipelines:
+  default:
+    - step:
+          script:
+            - echo "testing stuff"
+    - step:
+          name: step2
+          script:
+            - echo "step2"
+    - step:
+          image: ubuntu
+          name: Step Three
+          script:
+            - echo "step3"
+  branches:
+    '**':
+      - step:
+          script:
+            - echo "testing stuff in any branch"
+      - step:
+          name: branch step 2
+          script:
+            - echo "testing stuff in any branch"
+    master:
+      - step:
+          script:
+            - echo "testing stuff in master branch"
+      - step:
+          name: master_step_2
+          script:
+            - echo "master step 2"
+     

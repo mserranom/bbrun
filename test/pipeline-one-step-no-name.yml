@@ -1,7 +1,0 @@
-pipelines:
-  default:
-    - step:
-          image: ubuntu
-          script:
-            - echo "testing stuff"
-     

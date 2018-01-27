@@ -1,50 +1,137 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`integration tests multiple step pipelines executes all steps 1`] = `
-"running \\"test\\" in \\"ubuntu\\" image
-shell:
-  docker run  -P -v PWD:/ws -w /ws ubuntu chmod +x .bbrun.sh && ./.bbrun.sh
-running \\"build\\" in \\"ubuntu2\\" image
-shell:
-  docker run  -P -v PWD:/ws -w /ws ubuntu2 chmod +x .bbrun.sh && ./.bbrun.sh
-running \\"deploy all the things\\" in \\"ubuntu\\" image
-shell:
-  docker run  -P -v PWD:/ws -w /ws ubuntu chmod +x .bbrun.sh && ./.bbrun.sh
+exports[`environment variables miltiple variables are added to the script 1`] = `
+"executing step in \\"ubuntu\\"
+docker command:
+	docker run  -P -v PWD:/ws -w /ws ubuntu sh .bbrun.sh
+build script:
+	export foo=bar
+	export var=env
+	set -e
+	echo \\"testing stuff\\"
 "
 `;
 
-exports[`integration tests multiple step pipelines executes all steps 2`] = `""`;
-
-exports[`integration tests single step pipelines executes a step in single step pipeline 1`] = `
-"running \\"test\\" in \\"ubuntu\\" image
-shell:
-  docker run  -P -v PWD:/ws -w /ws ubuntu chmod +x .bbrun.sh && ./.bbrun.sh
+exports[`environment variables single variable is added to the script 1`] = `
+"executing step in \\"ubuntu\\"
+docker command:
+	docker run  -P -v PWD:/ws -w /ws ubuntu sh .bbrun.sh
+build script:
+	export foo=bar
+	set -e
+	echo \\"testing stuff\\"
 "
 `;
 
-exports[`integration tests single step pipelines executes a step in single step pipeline 2`] = `""`;
-
-exports[`integration tests single step pipelines executes all defined steps in single step pipeline 1`] = `
-"running \\"test\\" in \\"ubuntu\\" image
-shell:
-  docker run  -P -v PWD:/ws -w /ws ubuntu chmod +x .bbrun.sh && ./.bbrun.sh
+exports[`invalid template should fail 1`] = `
+"Malformed template, check https://confluence.atlassian.com/bitbucket/configure-bitbucket-pipelines-yml-792298910.html
 "
 `;
 
-exports[`integration tests single step pipelines executes all defined steps in single step pipeline 2`] = `""`;
-
-exports[`integration tests single step pipelines executes all defined steps in single step pipeline with no name 1`] = `
-"running \\"default\\" in \\"ubuntu\\" image
-shell:
-  docker run  -P -v PWD:/ws -w /ws ubuntu chmod +x .bbrun.sh && ./.bbrun.sh
+exports[`no image template should use default atlassian image 1`] = `
+"executing step in \\"atlassian/default-image:latest\\"
+docker command:
+	docker run  -P -v PWD:/ws -w /ws atlassian/default-image:latest sh .bbrun.sh
+build script:
+	set -e
+	echo \\"testing stuff\\"
 "
 `;
 
-exports[`integration tests single step pipelines executes all defined steps in single step pipeline with no name 2`] = `""`;
+exports[`single step pipeline executes the default step with no arguments 1`] = `
+"executing step in \\"ubuntu\\"
+docker command:
+	docker run  -P -v PWD:/ws -w /ws ubuntu sh .bbrun.sh
+build script:
+	set -e
+	echo \\"testing stuff\\"
+"
+`;
 
-exports[`integration tests single step pipelines fails when step doesn't exist 1`] = `""`;
+exports[`single step pipeline executes the step by name 1`] = `
+"executing step \\"test\\" in \\"ubuntu\\"
+docker command:
+	docker run  -P -v PWD:/ws -w /ws ubuntu sh .bbrun.sh
+build script:
+	set -e
+	echo \\"testing stuff\\"
+"
+`;
 
-exports[`integration tests single step pipelines fails when step doesn't exist 2`] = `
-"step \\"fake_step\\" cannot be found in test/pipeline-one-step.yml
+exports[`template with multiple steps in the default pipeline should execute a named step in a branch 1`] = `
+"executing step \\"master_step_2\\" in \\"atlassian/default-image:latest\\"
+docker command:
+	docker run  -P -v PWD:/ws -w /ws atlassian/default-image:latest sh .bbrun.sh
+build script:
+	set -e
+	echo \\"master step 2\\"
+"
+`;
+
+exports[`template with multiple steps in the default pipeline should execute a single step by name 1`] = `
+"executing step \\"step2\\" in \\"atlassian/default-image:latest\\"
+docker command:
+	docker run  -P -v PWD:/ws -w /ws atlassian/default-image:latest sh .bbrun.sh
+build script:
+	set -e
+	echo \\"step2\\"
+"
+`;
+
+exports[`template with multiple steps in the default pipeline should execute a single step by name with spaces in the name 1`] = `
+"executing step \\"Step Three\\" in \\"ubuntu\\"
+docker command:
+	docker run  -P -v PWD:/ws -w /ws ubuntu sh .bbrun.sh
+build script:
+	set -e
+	echo \\"step3\\"
+"
+`;
+
+exports[`template with multiple steps in the default pipeline should execute all the default steps when no argument is provided 1`] = `
+"executing step in \\"atlassian/default-image:latest\\"
+docker command:
+	docker run  -P -v PWD:/ws -w /ws atlassian/default-image:latest sh .bbrun.sh
+build script:
+	set -e
+	echo \\"testing stuff\\"
+executing step in \\"atlassian/default-image:latest\\"
+docker command:
+	docker run  -P -v PWD:/ws -w /ws atlassian/default-image:latest sh .bbrun.sh
+build script:
+	set -e
+	echo \\"step2\\"
+executing step in \\"ubuntu\\"
+docker command:
+	docker run  -P -v PWD:/ws -w /ws ubuntu sh .bbrun.sh
+build script:
+	set -e
+	echo \\"step3\\"
+"
+`;
+
+exports[`template with multiple steps in the default pipeline should execute all the steps in a branch if no step provided 1`] = `
+"executing step in \\"atlassian/default-image:latest\\"
+docker command:
+	docker run  -P -v PWD:/ws -w /ws atlassian/default-image:latest sh .bbrun.sh
+build script:
+	set -e
+	echo \\"testing stuff in master branch\\"
+executing step in \\"atlassian/default-image:latest\\"
+docker command:
+	docker run  -P -v PWD:/ws -w /ws atlassian/default-image:latest sh .bbrun.sh
+build script:
+	set -e
+	echo \\"master step 2\\"
+"
+`;
+
+exports[`template with multiple steps in the default pipeline should understand asterisk branches 1`] = `
+"executing step \\"branch step 2\\" in \\"atlassian/default-image:latest\\"
+docker command:
+	docker run  -P -v PWD:/ws -w /ws atlassian/default-image:latest sh .bbrun.sh
+build script:
+	set -e
+	echo \\"testing stuff in any branch\\"
 "
 `;

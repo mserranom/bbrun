@@ -1,0 +1,7 @@
+pipelines:
+  branches:
+    master:
+      - step:
+            script:
+              - echo "testing stuff"
+     
