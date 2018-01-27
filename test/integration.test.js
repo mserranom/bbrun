@@ -77,6 +77,14 @@ describe("template with multiple steps in the default pipeline", () => {
     expect(res.stderr).toBe("");
     expect(res.code).toBe(0);
   });
+  it("should execute a named step in a branch", () => {
+    const res = run(
+      "master_step_2 --pipeline branches:master --template test/templates/pipeline-multiple-steps.yml --dry-run"
+    );
+    expect(norm(res.stdout)).toMatchSnapshot();
+    expect(res.stderr).toBe("");
+    expect(res.code).toBe(0);
+  });
 });
 
 it("template with no default should fail when no step name is passed", () => {
