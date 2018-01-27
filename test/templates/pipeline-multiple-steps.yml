@@ -21,14 +21,6 @@ pipelines:
           name: branch step 2
           script:
             - echo "testing stuff in any branch"
-    wip:
-      - step:
-          script:
-            - echo "testing stuff in wip branch"
-      - step:
-          name: wip step 2
-          script:
-            - echo "wip step 2"
     master:
       - step:
           script:

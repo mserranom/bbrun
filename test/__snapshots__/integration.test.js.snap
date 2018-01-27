@@ -86,3 +86,13 @@ build script:
 	echo \\"step3\\"
 "
 `;
+
+exports[`template with multiple steps in the default pipeline should understand asterisk branches 1`] = `
+"executing step \\"branch step 2\\" in \\"atlassian/default-image:latest\\"
+docker command:
+	docker run  -P -v PWD:/ws -w /ws atlassian/default-image:latest chmod +x .bbrun.sh && ./.bbrun.sh
+build script:
+	set -e
+	echo \\"testing stuff in any branch\\"
+"
+`;
