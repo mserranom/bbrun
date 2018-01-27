@@ -1,5 +1,28 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`environment variables miltiple variables are added to the script 1`] = `
+"executing step in \\"ubuntu\\"
+docker command:
+	docker run  -P -v PWD:/ws -w /ws ubuntu sh .bbrun.sh
+build script:
+	export foo=bar
+	export var=env
+	set -e
+	echo \\"testing stuff\\"
+"
+`;
+
+exports[`environment variables single variable is added to the script 1`] = `
+"executing step in \\"ubuntu\\"
+docker command:
+	docker run  -P -v PWD:/ws -w /ws ubuntu sh .bbrun.sh
+build script:
+	export foo=bar
+	set -e
+	echo \\"testing stuff\\"
+"
+`;
+
 exports[`invalid template should fail 1`] = `
 "Malformed template, check https://confluence.atlassian.com/bitbucket/configure-bitbucket-pipelines-yml-792298910.html
 "

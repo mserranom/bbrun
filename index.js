@@ -34,7 +34,6 @@ const cli = meow(
         type: "string",
         alias: "p"
       },
-
       template: {
         type: "string",
         alias: "t"

@@ -111,3 +111,22 @@ it("template with no default should fail when no step name is passed", () => {
   expect(res.stderr).toBe("default pipeline not found\n");
   expect(res.code).toBe(1);
 });
+
+describe("environment variables", () => {
+  it("single variable is added to the script", () => {
+    const res = run(
+      "--env foo=bar --template test/templates/pipeline-one-step.yml --dry-run"
+    );
+    expect(norm(res.stdout)).toMatchSnapshot();
+    expect(res.stderr).toBe("");
+    expect(res.code).toBe(0);
+  });
+  it("miltiple variables are added to the script", () => {
+    const res = run(
+      '--env "foo=bar, var=env " --template test/templates/pipeline-one-step.yml --dry-run'
+    );
+    expect(norm(res.stdout)).toMatchSnapshot();
+    expect(res.stderr).toBe("");
+    expect(res.code).toBe(0);
+  });
+});
