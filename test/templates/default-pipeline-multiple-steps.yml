@@ -9,6 +9,7 @@ pipelines:
             - echo "step2"
     - step:
           image: ubuntu
+          name: Step Three
           script:
             - echo "step3"
      
