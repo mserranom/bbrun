@@ -42,7 +42,11 @@ function findPipeline(config, pipeline, pipelineName) {
   assert.nonEmptyString(pipeline);
 
   if (pipeline === "default") {
-    return config.pipelines.default;
+    if (!config.pipelines.default) {
+      throw new Error("default pipeline not found");
+    } else {
+      return config.pipelines.default;
+    }
   } else {
     assert.nonEmptyString(pipelineName);
     assert.nonEmptyObject(

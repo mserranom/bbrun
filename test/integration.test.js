@@ -70,3 +70,17 @@ describe("template with multiple steps in the default pipeline", () => {
     expect(res.code).toBe(0);
   });
 });
+
+it("template with no default should fail when no step name is passed", () => {
+  const res = run("--template test/templates/bug-1.yml --dry-run");
+  expect(norm(res.stdout)).toBe("");
+  expect(res.stderr).toBe("default pipeline not found\n");
+  expect(res.code).toBe(1);
+});
+
+it("bug-1", () => {
+  const res = run("--template test/templates/bug-1.yml --dry-run");
+  // expect(norm(res.stdout)).toBe("output");
+  expect(res.stderr).toBe("");
+  expect(res.code).toBe(0);
+});
