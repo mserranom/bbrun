@@ -8,7 +8,7 @@ exports[`invalid template should fail 1`] = `
 exports[`no image template should use default atlassian image 1`] = `
 "executing step in \\"atlassian/default-image:latest\\"
 docker command:
-	docker run  -P -v PWD:/ws -w /ws atlassian/default-image:latest chmod +x .bbrun.sh && ./.bbrun.sh
+	docker run  -P -v PWD:/ws -w /ws atlassian/default-image:latest sh .bbrun.sh
 build script:
 	set -e
 	echo \\"testing stuff\\"
@@ -18,7 +18,7 @@ build script:
 exports[`single step pipeline executes the default step with no arguments 1`] = `
 "executing step in \\"ubuntu\\"
 docker command:
-	docker run  -P -v PWD:/ws -w /ws ubuntu chmod +x .bbrun.sh && ./.bbrun.sh
+	docker run  -P -v PWD:/ws -w /ws ubuntu sh .bbrun.sh
 build script:
 	set -e
 	echo \\"testing stuff\\"
@@ -28,7 +28,7 @@ build script:
 exports[`single step pipeline executes the step by name 1`] = `
 "executing step \\"test\\" in \\"ubuntu\\"
 docker command:
-	docker run  -P -v PWD:/ws -w /ws ubuntu chmod +x .bbrun.sh && ./.bbrun.sh
+	docker run  -P -v PWD:/ws -w /ws ubuntu sh .bbrun.sh
 build script:
 	set -e
 	echo \\"testing stuff\\"
@@ -38,7 +38,7 @@ build script:
 exports[`template with multiple steps in the default pipeline should execute a named step in a branch 1`] = `
 "executing step \\"master_step_2\\" in \\"atlassian/default-image:latest\\"
 docker command:
-	docker run  -P -v PWD:/ws -w /ws atlassian/default-image:latest chmod +x .bbrun.sh && ./.bbrun.sh
+	docker run  -P -v PWD:/ws -w /ws atlassian/default-image:latest sh .bbrun.sh
 build script:
 	set -e
 	echo \\"master step 2\\"
@@ -48,7 +48,7 @@ build script:
 exports[`template with multiple steps in the default pipeline should execute a single step by name 1`] = `
 "executing step \\"step2\\" in \\"atlassian/default-image:latest\\"
 docker command:
-	docker run  -P -v PWD:/ws -w /ws atlassian/default-image:latest chmod +x .bbrun.sh && ./.bbrun.sh
+	docker run  -P -v PWD:/ws -w /ws atlassian/default-image:latest sh .bbrun.sh
 build script:
 	set -e
 	echo \\"step2\\"
@@ -58,7 +58,7 @@ build script:
 exports[`template with multiple steps in the default pipeline should execute a single step by name with spaces in the name 1`] = `
 "executing step \\"Step Three\\" in \\"ubuntu\\"
 docker command:
-	docker run  -P -v PWD:/ws -w /ws ubuntu chmod +x .bbrun.sh && ./.bbrun.sh
+	docker run  -P -v PWD:/ws -w /ws ubuntu sh .bbrun.sh
 build script:
 	set -e
 	echo \\"step3\\"
@@ -68,19 +68,19 @@ build script:
 exports[`template with multiple steps in the default pipeline should execute all the default steps when no argument is provided 1`] = `
 "executing step in \\"atlassian/default-image:latest\\"
 docker command:
-	docker run  -P -v PWD:/ws -w /ws atlassian/default-image:latest chmod +x .bbrun.sh && ./.bbrun.sh
+	docker run  -P -v PWD:/ws -w /ws atlassian/default-image:latest sh .bbrun.sh
 build script:
 	set -e
 	echo \\"testing stuff\\"
 executing step in \\"atlassian/default-image:latest\\"
 docker command:
-	docker run  -P -v PWD:/ws -w /ws atlassian/default-image:latest chmod +x .bbrun.sh && ./.bbrun.sh
+	docker run  -P -v PWD:/ws -w /ws atlassian/default-image:latest sh .bbrun.sh
 build script:
 	set -e
 	echo \\"step2\\"
 executing step in \\"ubuntu\\"
 docker command:
-	docker run  -P -v PWD:/ws -w /ws ubuntu chmod +x .bbrun.sh && ./.bbrun.sh
+	docker run  -P -v PWD:/ws -w /ws ubuntu sh .bbrun.sh
 build script:
 	set -e
 	echo \\"step3\\"
@@ -90,13 +90,13 @@ build script:
 exports[`template with multiple steps in the default pipeline should execute all the steps in a branch if no step provided 1`] = `
 "executing step in \\"atlassian/default-image:latest\\"
 docker command:
-	docker run  -P -v PWD:/ws -w /ws atlassian/default-image:latest chmod +x .bbrun.sh && ./.bbrun.sh
+	docker run  -P -v PWD:/ws -w /ws atlassian/default-image:latest sh .bbrun.sh
 build script:
 	set -e
 	echo \\"testing stuff in master branch\\"
 executing step in \\"atlassian/default-image:latest\\"
 docker command:
-	docker run  -P -v PWD:/ws -w /ws atlassian/default-image:latest chmod +x .bbrun.sh && ./.bbrun.sh
+	docker run  -P -v PWD:/ws -w /ws atlassian/default-image:latest sh .bbrun.sh
 build script:
 	set -e
 	echo \\"master step 2\\"
@@ -106,7 +106,7 @@ build script:
 exports[`template with multiple steps in the default pipeline should understand asterisk branches 1`] = `
 "executing step \\"branch step 2\\" in \\"atlassian/default-image:latest\\"
 docker command:
-	docker run  -P -v PWD:/ws -w /ws atlassian/default-image:latest chmod +x .bbrun.sh && ./.bbrun.sh
+	docker run  -P -v PWD:/ws -w /ws atlassian/default-image:latest sh .bbrun.sh
 build script:
 	set -e
 	echo \\"testing stuff in any branch\\"

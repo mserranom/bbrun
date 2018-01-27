@@ -33,7 +33,7 @@ function checkExists() {
 function run(commands, image, dryRun, interactive) {
   const cmd = interactive
     ? `run -P -it --entrypoint=/bin/bash -v ${pwd()}:/ws -w /ws ${image}`
-    : `run  -P -v ${pwd()}:/ws -w /ws ${image} chmod +x ${BUILD_SCRIPT} && ./${BUILD_SCRIPT}`;
+    : `run  -P -v ${pwd()}:/ws -w /ws ${image} sh ${BUILD_SCRIPT}`;
 
   if (dryRun) {
     console.log(`docker command:\n\tdocker ${cmd}`);
