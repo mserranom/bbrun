@@ -73,7 +73,7 @@ describe("template with multiple steps in the default pipeline", () => {
     const res = run(
       '"Step Three" --template test/templates/default-pipeline-multiple-steps.yml --dry-run'
     );
-    // expect(norm(res.stdout)).toMatchSnapshot();
+    expect(norm(res.stdout)).toMatchSnapshot();
     expect(res.stderr).toBe("");
     expect(res.code).toBe(0);
   });

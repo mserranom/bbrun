@@ -45,6 +45,16 @@ build script:
 "
 `;
 
+exports[`template with multiple steps in the default pipeline should execute a single step by name with spaces in the name 1`] = `
+"executing step \\"Step Three\\" in \\"ubuntu\\"
+docker command:
+	docker run  -P -v PWD:/ws -w /ws ubuntu chmod +x .bbrun.sh && ./.bbrun.sh
+build script:
+	set -e
+	echo \\"step3\\"
+"
+`;
+
 exports[`template with multiple steps in the default pipeline should execute all the default steps when no argument is provided 1`] = `
 "executing step in \\"atlassian/default-image:latest\\"
 docker command:
