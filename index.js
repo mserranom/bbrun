@@ -6,27 +6,29 @@ const bbrun = require("./src/bbrun");
 
 const cli = meow(
   `
-	Usage
-	  $ bbrun <step> <options>
+Usage
+  $ bbrun <step> <options>
 
-	Options
-      --template, pipeline template, defaults to "bitbucket-pipelines.yml"
-      --env,  define environment variables for execution
-      --dry-run,  performs dry run, printing the docker command
-      --interactive, starts an interactive /bin/bash session in the container
-      --help, prints this very guide
+Options
+    --template (-t), pipeline template, defaults to "bitbucket-pipelines.yml"
+    --env (-e),  define environment variables for execution
+    --dry-run (-d),  performs dry run, printing the docker command
+    --interactive (-i), starts an interactive bash session in the container
+    --help, prints this very guide
 
-    Examples:
-      Execute all steps defined in ./bitbucket-pipelines.yml
-        $ bbrun
-        $ bbrun --template bitbucket-template.yml
-      Execute a single step by name
-        $ bbrun test
-        $ bbrun "Build and test"
-        $ bbrun --pipeline "tags:v1.3.4"
-      Execute a step using an environment variable
-        $ bbrun test --env EDITOR=vim
-        $ bbrun test --env EDITOR=vim,FOO=bar
+Examples:
+  Execute all steps in the default pipeline from bitbucket-pipelines.yml
+    $ bbrun
+    $ bbrun --template bitbucket-template.yml
+    $ bbrun --pipeline default
+  Execute a single step by its name
+    $ bbrun test
+    $ bbrun "Integration Tests"
+  Execute steps from different pipelines
+    $ bbrun test --pipeline branches:master
+  Define an environment variable
+    $ bbrun test --env EDITOR=vim
+    $ bbrun test --env "EDITOR=vim, USER=root"
 `,
   {
     flags: {
