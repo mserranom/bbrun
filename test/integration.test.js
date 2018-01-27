@@ -1,6 +1,6 @@
 function run(options) {
   const exec = require("shelljs").exec;
-  return exec(`node index.js ${options} --env-file fake_file`, {
+  return exec(`node index.js ${options}`, {
     silent: true
   });
 }
@@ -9,47 +9,45 @@ const PWD = require("shelljs").pwd();
 
 const norm = input => input.replace(new RegExp(PWD, "g"), "PWD");
 
-describe("integration tests", () => {
-  describe("single step pipelines", () => {
-    it("executes a step in single step pipeline", () => {
-      const res = run("test --template test/pipeline-one-step.yml --dry-run");
-      expect(norm(res.stdout)).toMatchSnapshot();
-      expect(res.stderr).toMatchSnapshot();
-      expect(res.code).toBe(0);
-    });
-
-    it("executes all defined steps in single step pipeline", () => {
-      const res = run("--template test/pipeline-one-step.yml --dry-run");
-      expect(norm(res.stdout)).toMatchSnapshot();
-      expect(res.stderr).toMatchSnapshot();
-      expect(res.code).toBe(0);
-    });
-
-    it("executes all defined steps in single step pipeline with no name", () => {
-      const res = run(
-        "--template test/pipeline-one-step-no-name.yml --dry-run"
-      );
-      expect(norm(res.stdout)).toMatchSnapshot();
-      expect(res.stderr).toMatchSnapshot();
-      expect(res.code).toBe(0);
-    });
-
-    it("fails when step doesn't exist", () => {
-      const res = run(
-        "fake_step --template test/pipeline-one-step.yml --dry-run"
-      );
-      expect(norm(res.stdout)).toMatchSnapshot();
-      expect(res.stderr).toMatchSnapshot();
-      expect(res.code).toBe(1);
-    });
+describe("single step pipeline", () => {
+  it("executes the default step with no arguments", () => {
+    const res = run(
+      "--template test/templates/pipeline-one-step.yml --dry-run"
+    );
+    expect(norm(res.stdout)).toMatchSnapshot();
+    expect(res.stderr).toBe("");
+    expect(res.code).toBe(0);
   });
 
-  describe("multiple step pipelines", () => {
-    it("executes all steps", () => {
-      const res = run("--template test/multiple-step-pipeline.yml --dry-run");
-      expect(norm(res.stdout)).toMatchSnapshot();
-      expect(res.stderr).toMatchSnapshot();
-      expect(res.code).toBe(0);
-    });
+  it("executes the step by name", () => {
+    const res = run(
+      "test --template test/templates/pipeline-one-step.yml --dry-run"
+    );
+    expect(norm(res.stdout)).toMatchSnapshot();
+    expect(res.stderr).toBe("");
+    expect(res.code).toBe(0);
   });
+
+  it("fails executing non-existing name", () => {
+    const res = run(
+      "foo --template test/templates/pipeline-one-step.yml --dry-run"
+    );
+    expect(norm(res.stdout)).toBe("");
+    expect(res.stderr).toBe('couldn\'t find step with name="foo"\n');
+    expect(res.code).toBe(1);
+  });
+});
+
+it("invalid template should fail", () => {
+  const res = run("--template test/templates/invalid-template.yml --dry-run");
+  expect(norm(res.stdout)).toBe("");
+  expect(res.stderr).toMatchSnapshot();
+  expect(res.code).toBe(1);
+});
+
+it("no image template should use default atlassian image", () => {
+  const res = run("--template test/templates/no-image-template.yml --dry-run");
+  expect(norm(res.stdout)).toMatchSnapshot();
+  expect(res.stderr).toBe("");
+  expect(res.code).toBe(0);
 });

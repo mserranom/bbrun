@@ -1,50 +1,36 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`integration tests multiple step pipelines executes all steps 1`] = `
-"running \\"test\\" in \\"ubuntu\\" image
-shell:
-  docker run  -P -v PWD:/ws -w /ws ubuntu chmod +x .bbrun.sh && ./.bbrun.sh
-running \\"build\\" in \\"ubuntu2\\" image
-shell:
-  docker run  -P -v PWD:/ws -w /ws ubuntu2 chmod +x .bbrun.sh && ./.bbrun.sh
-running \\"deploy all the things\\" in \\"ubuntu\\" image
-shell:
-  docker run  -P -v PWD:/ws -w /ws ubuntu chmod +x .bbrun.sh && ./.bbrun.sh
+exports[`invalid template should fail 1`] = `
+"Malformed template, check https://confluence.atlassian.com/bitbucket/configure-bitbucket-pipelines-yml-792298910.html
 "
 `;
 
-exports[`integration tests multiple step pipelines executes all steps 2`] = `""`;
-
-exports[`integration tests single step pipelines executes a step in single step pipeline 1`] = `
-"running \\"test\\" in \\"ubuntu\\" image
-shell:
-  docker run  -P -v PWD:/ws -w /ws ubuntu chmod +x .bbrun.sh && ./.bbrun.sh
+exports[`no image template should use default atlassian image 1`] = `
+"executing step in \\"atlassian/default-image:latest\\"
+docker command:
+	docker run  -P -v PWD:/ws -w /ws atlassian/default-image:latest chmod +x .bbrun.sh && ./.bbrun.sh
+build script:
+	set -e
+	echo \\"testing stuff\\"
 "
 `;
 
-exports[`integration tests single step pipelines executes a step in single step pipeline 2`] = `""`;
-
-exports[`integration tests single step pipelines executes all defined steps in single step pipeline 1`] = `
-"running \\"test\\" in \\"ubuntu\\" image
-shell:
-  docker run  -P -v PWD:/ws -w /ws ubuntu chmod +x .bbrun.sh && ./.bbrun.sh
+exports[`single step pipeline executes the default step with no arguments 1`] = `
+"executing step in \\"ubuntu\\"
+docker command:
+	docker run  -P -v PWD:/ws -w /ws ubuntu chmod +x .bbrun.sh && ./.bbrun.sh
+build script:
+	set -e
+	echo \\"testing stuff\\"
 "
 `;
 
-exports[`integration tests single step pipelines executes all defined steps in single step pipeline 2`] = `""`;
-
-exports[`integration tests single step pipelines executes all defined steps in single step pipeline with no name 1`] = `
-"running \\"default\\" in \\"ubuntu\\" image
-shell:
-  docker run  -P -v PWD:/ws -w /ws ubuntu chmod +x .bbrun.sh && ./.bbrun.sh
-"
-`;
-
-exports[`integration tests single step pipelines executes all defined steps in single step pipeline with no name 2`] = `""`;
-
-exports[`integration tests single step pipelines fails when step doesn't exist 1`] = `""`;
-
-exports[`integration tests single step pipelines fails when step doesn't exist 2`] = `
-"step \\"fake_step\\" cannot be found in test/pipeline-one-step.yml
+exports[`single step pipeline executes the step by name 1`] = `
+"executing step \\"test\\" in \\"ubuntu\\"
+docker command:
+	docker run  -P -v PWD:/ws -w /ws ubuntu chmod +x .bbrun.sh && ./.bbrun.sh
+build script:
+	set -e
+	echo \\"testing stuff\\"
 "
 `;
