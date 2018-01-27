@@ -55,7 +55,7 @@ it("no image template should use default atlassian image", () => {
 describe("template with multiple steps in the default pipeline", () => {
   it("should execute all the default steps when no argument is provided", () => {
     const res = run(
-      "--template test/templates/default-pipeline-multiple-steps.yml --dry-run"
+      "--template test/templates/pipeline-multiple-steps.yml --dry-run"
     );
     expect(norm(res.stdout)).toMatchSnapshot();
     expect(res.stderr).toBe("");
@@ -63,7 +63,7 @@ describe("template with multiple steps in the default pipeline", () => {
   });
   it("should execute a single step by name", () => {
     const res = run(
-      "step2 --template test/templates/default-pipeline-multiple-steps.yml --dry-run"
+      "step2 --template test/templates/pipeline-multiple-steps.yml --dry-run"
     );
     expect(norm(res.stdout)).toMatchSnapshot();
     expect(res.stderr).toBe("");
@@ -71,7 +71,7 @@ describe("template with multiple steps in the default pipeline", () => {
   });
   it("should execute a single step by name with spaces in the name", () => {
     const res = run(
-      '"Step Three" --template test/templates/default-pipeline-multiple-steps.yml --dry-run'
+      '"Step Three" --template test/templates/pipeline-multiple-steps.yml --dry-run'
     );
     expect(norm(res.stdout)).toMatchSnapshot();
     expect(res.stderr).toBe("");
