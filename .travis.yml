@@ -7,6 +7,7 @@ cache:
   - node_modules
 script:
  - npm test
+ 
 deploy:
   provider: npm
   email: mserranom@gmail.com
