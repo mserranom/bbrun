@@ -20,8 +20,8 @@
   },
   "homepage": "https://github.com/mserranom/bbrun#readme",
   "engines": {
-    "node": "8.5.0",
-    "npm": "5.4.2"
+    "node": ">=8.5.0",
+    "npm": ">=5.4.2"
   },
   "dependencies": {
     "check-types": "7.3.0",
