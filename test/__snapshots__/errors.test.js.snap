@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should fail properly when script section is mispelled running a step by name 1`] = `
+"\\"script\\" section not found in step:
+{
+    \\"name\\": \\"run_dev\\",
+    \\"scripts\\": [
+        \\"echo dev\\"
+    ]
+}
+"
+`;
+
+exports[`should fail properly when script section is mispelled running all steps in a pipeline 1`] = `
+"\\"script\\" section not found in step:
+{
+    \\"scripts\\": [
+        \\"echo master\\"
+    ]
+}
+"
+`;

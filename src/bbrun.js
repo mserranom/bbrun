@@ -2,6 +2,7 @@ const docker = require("./docker");
 const template = require("./template");
 const { extractPipelineName } = require("./util");
 const { exec } = require("./exec");
+const assert = require("check-types").assert;
 
 const BB_TEMPLATE = "bitbucket-pipelines.yml";
 const BB_IMAGE = "atlassian/default-image:latest";
@@ -29,6 +30,10 @@ module.exports = function(options, stepName) {
   }
 
   function execStep(step) {
+    assert.nonEmptyArray(
+      step.script,
+      `"script" section not found in step:\n${JSON.stringify(step, null, 4)}`
+    );
     const dockerImage = step.image || image;
     console.log(
       `executing step${stepName ? ` "${stepName}"` : ""} in "${dockerImage}"`

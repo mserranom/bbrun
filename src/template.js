@@ -8,7 +8,7 @@ const BB_TEMPLATE_DOC =
 
 function read(bbTemplate) {
   if (!fs.existsSync(bbTemplate)) {
-    console.error(`${bbTemplate} can't be found`);
+    throw new Error(`${bbTemplate} can't be found`);
   }
 
   try {
