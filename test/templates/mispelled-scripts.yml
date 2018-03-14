@@ -1,0 +1,20 @@
+# https://github.com/mserranom/bbrun/issues/10
+
+image: node:6.10.3
+clone: 
+  depth: 5
+pipelines:   
+  branches:
+    dev:
+      - step:
+          name: run_dev
+          scripts:
+            - echo dev
+    master:
+      - step:
+          scripts:
+            - echo master
+    default:
+      - step:
+          scripts:
+            - echo default
