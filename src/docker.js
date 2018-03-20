@@ -30,10 +30,10 @@ function checkExists() {
   }
 }
 
-function run(commands, image, dryRun, interactive) {
+function run(commands, image, dryRun, interactive, workDir) {
   const cmd = interactive
-    ? `run -P -it --entrypoint=/bin/bash -v ${pwd()}:/ws -w /ws ${image}`
-    : `run  -P -v ${pwd()}:/ws -w /ws ${image} sh ${BUILD_SCRIPT}`;
+    ? `run -P -it --entrypoint=/bin/bash -v ${pwd()}:${workDir} -w ${workDir} ${image}`
+    : `run  -P -v ${pwd()}:${workDir} -w ${workDir} ${image} sh ${BUILD_SCRIPT}`;
 
   if (dryRun) {
     console.log(`docker command:\n\tdocker ${cmd}`);

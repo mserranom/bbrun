@@ -10,9 +10,11 @@ Usage
   $ bbrun <step> <options>
 
 Options
-    --template (-t), pipeline template, defaults to "bitbucket-pipelines.yml"
-    --env (-e),  define environment variables for execution
-    --dry-run (-d),  performs dry run, printing the docker command
+    --template (-t), build template, defaults to "bitbucket-pipelines.yml"
+    --pipeline (-p), pipeline to execute. "default" if not provided
+    --env (-e), define environment variables for execution
+    --work-dir (-w), docker working directory, defaults to "ws"
+    --dry-run (-d), performs dry run, printing the docker command
     --interactive (-i), starts an interactive bash session in the container
     --help, prints this very guide
 
@@ -43,6 +45,10 @@ Examples:
       env: {
         type: "string",
         alias: "e"
+      },
+      "work-dir": {
+        type: "string",
+        alias: "w"
       },
       interactive: {
         type: "boolean",
