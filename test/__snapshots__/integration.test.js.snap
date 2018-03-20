@@ -135,3 +135,13 @@ build script:
 	echo \\"testing stuff in any branch\\"
 "
 `;
+
+exports[`working directory is overriden 1`] = `
+"executing step in \\"ubuntu\\"
+docker command:
+	docker run  -P -v PWD:/test_wd -w /test_wd ubuntu sh .bbrun.sh
+build script:
+	set -e
+	echo \\"testing stuff\\"
+"
+`;

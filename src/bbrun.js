@@ -10,6 +10,7 @@ const BB_IMAGE = "atlassian/default-image:latest";
 module.exports = function(options, stepName) {
   options.template = options.template || BB_TEMPLATE;
   options.pipeline = options.pipeline || "default";
+  options.workDir = options.workDir || "/ws";
 
   const config = template.read(options.template);
   const image = config.image || BB_IMAGE;

@@ -130,3 +130,12 @@ describe("environment variables", () => {
     expect(res.code).toBe(0);
   });
 });
+
+it("working directory is overriden", () => {
+  const res = run(
+    "--template test/templates/pipeline-one-step.yml --work-dir /test_wd --dry-run"
+  );
+  expect(norm(res.stdout)).toMatchSnapshot();
+  expect(res.stderr).toBe("");
+  expect(res.code).toBe(0);
+});
