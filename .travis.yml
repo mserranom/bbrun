@@ -1,18 +1,17 @@
 language: node_js
 sudo: false
 node_js:
- - '8'
+- '8'
 cache:
   directories:
   - node_modules
 script:
- - npm test
- 
+- npm test
 deploy:
   provider: npm
   email: mserranom@gmail.com
   api_key:
-    secure: MOSsyxitvU0Y8LogysiwV6TF4tWEkuSX954eKXXfy2HDBqHeUFSyjlHtGkeCHq2XLJ4N/67o5MfJpp0jcnONMII5CCmMStBcMMJAg7DCwZMYZCvPY548WwrhUv2D198meBiKXvHHto4QkPuxl1aubcE+2YGwrLMNzOUrlzbw24m178gKwPoV2Q09DWxY6/JOnb6n46GaEDxKBiowcfGqk8OGepDgTSQcJh8xhuUDVrv0Tse80aBCc/DE2YTT75n9yneY91hsKO5jKgjiUvggREVuKVVDigNnyDB5FsIBS+DQvzxrzPGj0PU7KYWb3+Fq71YT16MH6eEz8GsbGk/kxs9MnTqXnCj6FpZfeor0G5GeT1BiYS1ntyNpk28gMp0ryhZHWRu5fsSD9r3f4bhlMy/XsewDVgi7pkXeW8bnHEn9FdPom4TIHaddVTcJYBOZhR5I2t8vyy8NbeHqzqMJPMNQmNy7sdJ9kurbh18HV5ZV+KcwUxMLRctHv4lL+IK4W03qLLbXeGqieNRY+Tv8K3EbYyyia2BmHGn/bUT4L8qpfka4JjrCEDCAYI0471iuUxyjI/wZ6K7d6jXT1myb504XYsAEle4B0DuSPqR2bJMXL5q9QVIdZeDE/PGqY7w8qqQ/j2mADUiBaYbSKU5sfOXP29gk3rEEFWWu95cqqvs=
+    secure: 1zjwLD9N5NdDe8iFRnmGKQwiZs1sx9MP7fQZjNPUrgpv4kJkVJXLp+BSB1il6C50yaqAQCmB7/tlD0nvyaERdsWunfPdVcjr6IwWK50H3iwnOHY/f0EC7JeNtPmOPoOMA99BlO/h2X+ecegii4QqDSTEBGDwg6/BzqjfEnB/HdshkoDAeKTLiRdPxPm6hEvVHphdgi9I1jMahFogUUExMpk6pAJYq+DuYAPlDVUGKYwbSXn6TiiPfruFaZblOAFo4eD4jzXu4SPnXgroj9di2h09gs3jh2wK3GkwXbfHOrPwmpC+Tddo5WUii/wBh8yJlDGNrWPDtwii7V3a9Si6mmJTrSGXnjpeLB+ih9V+in8NkMwKnJHXsiAl2dKCRoMZ5MTRcptU4LQYyg/RVfZAosLo1knD60WhGanMS6lVAmtCC28usT0MXopwGNcf/OzyTnkJAkRwN8rWX3uSIR5BE/i9u+xHezUXy0PcZ7GEIp+RlnW85E2f+UrjW4JGL8SyLIsDPvuY3VmX/7cGPn037CM5hRDdrSXLwdFycSsFaA7IkuaDSrO7/ItzJxeBWPvV6SEgkNPctnKTaMQtfjXgJYjgBwysAaIgiuLGdcESLZoKA7ATfQ3hgOPhaqepb9mlVxjPekw03ScYFAc3/R7PXgg/IJeKmQeL/wOdLwaa0h4=
   on:
     repo: mserranom/bbrun
     tags: true
