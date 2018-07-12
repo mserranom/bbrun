@@ -1,0 +1,12 @@
+pipelines:
+  default:
+    - step:
+          name: test
+          image:
+            name: account-name/openjdk:8
+            username: $DOCKER_HUB_USERNAME
+            password: $DOCKER_HUB_PASSWORD
+            email: $DOCKER_HUB_EMAIL
+          script:
+            - echo "testing stuff"
+     
