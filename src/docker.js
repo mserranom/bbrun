@@ -50,5 +50,16 @@ function run(commands, image, dryRun, interactive, workDir) {
   }
 }
 
+function extractImageName(image) {
+  if (typeof image === "string" || image instanceof String) {
+    return image;
+  } else if (image.name) {
+    return image.name;
+  } else {
+    throw new Error(`"${JSON.stringify(image)}" is not a valid image`);
+  }
+}
+
 module.exports.checkExists = checkExists;
 module.exports.run = run;
+module.exports.extractImageName = extractImageName;

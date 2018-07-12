@@ -36,9 +36,10 @@ module.exports = function(options, stepName) {
       `"script" section not found in step:\n${JSON.stringify(step, null, 4)}`
     );
     const dockerImage = step.image || image;
+    const imageName = docker.extractImageName(dockerImage);
     console.log(
-      `executing step${stepName ? ` "${stepName}"` : ""} in "${dockerImage}"`
+      `executing step${stepName ? ` "${stepName}"` : ""} in "${imageName}"`
     );
-    exec(step.script, dockerImage, options);
+    exec(step.script, imageName, options);
   }
 };

@@ -52,6 +52,15 @@ it("no image template should use default atlassian image", () => {
   expect(res.code).toBe(0);
 });
 
+it("should resolve private image names", () => {
+  const res = run(
+    "--template test/templates/private-image-template.yml --dry-run"
+  );
+  expect(norm(res.stdout)).toMatchSnapshot();
+  expect(res.stderr).toBe("");
+  expect(res.code).toBe(0);
+});
+
 describe("template with multiple steps in the default pipeline", () => {
   it("should execute all the default steps when no argument is provided", () => {
     const res = run(
