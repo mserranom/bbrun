@@ -1,6 +1,6 @@
 {
   "name": "bbrun",
-  "version": "0.9.3",
+  "version": "0.9.4",
   "description": "Run your Bitbucket Pipelines locally",
   "main": "index.js",
   "preferGlobal": true,
