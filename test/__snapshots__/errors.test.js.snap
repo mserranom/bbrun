@@ -1,5 +1,17 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`empty template file should fail 1`] = `
+"build configuration is empty or invalid yaml
+Malformed template, check https://confluence.atlassian.com/bitbucket/configure-bitbucket-pipelines-yml-792298910.html
+"
+`;
+
+exports[`invalid yaml should fail 1`] = `
+"build configuration is empty or invalid yaml
+Malformed template, check https://confluence.atlassian.com/bitbucket/configure-bitbucket-pipelines-yml-792298910.html
+"
+`;
+
 exports[`should fail properly when script section is mispelled running a step by name 1`] = `
 "\\"script\\" section not found in step:
 {

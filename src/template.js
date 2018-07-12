@@ -11,13 +11,9 @@ function read(bbTemplate) {
     throw new Error(`${bbTemplate} can't be found`);
   }
 
-  try {
-    const bbConfig = yaml.safeLoad(fs.readFileSync(bbTemplate, "utf8"));
-    validate(bbConfig);
-    return bbConfig;
-  } catch (error) {
-    throw new Error(`Malformed template, check ${BB_TEMPLATE_DOC}`);
-  }
+  const bbConfig = yaml.safeLoad(fs.readFileSync(bbTemplate, "utf8"));
+  validate(bbConfig);
+  return bbConfig;
 }
 
 function parse(config) {
@@ -77,18 +73,20 @@ function findNamedStep(config, stepName, pipeline, pipelineName) {
 }
 
 function validate(config) {
-  assert.nonEmptyObject(config);
-  assert.nonEmptyObject(config.pipelines);
-
-  const validateStep = stepObject => {
-    assert.nonEmptyObject(stepObject.step);
-    assert.nonEmptyArray(stepObject.step.script);
-  };
-
-  const validatePipelineDefinitions = pipelineDefinition => {
-    assert.nonEmptyArray(pipelineDefinition);
-    pipelineDefinition.forEach(step => validateStep(step));
-  };
+  try {
+    assert.nonEmptyObject(
+      config,
+      "build configuration is empty or invalid yaml"
+    );
+    assert.nonEmptyObject(
+      config.pipelines,
+      "'pipelines' section invalid or not found"
+    );
+  } catch (error) {
+    throw new Error(
+      `${error.message}\nMalformed template, check ${BB_TEMPLATE_DOC}`
+    );
+  }
 }
 
 module.exports.read = read;
