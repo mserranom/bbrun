@@ -24,7 +24,8 @@ build script:
 `;
 
 exports[`invalid template should fail 1`] = `
-"Malformed template, check https://confluence.atlassian.com/bitbucket/configure-bitbucket-pipelines-yml-792298910.html
+"'pipelines' section invalid or not found
+Malformed template, check https://confluence.atlassian.com/bitbucket/configure-bitbucket-pipelines-yml-792298910.html
 "
 `;
 

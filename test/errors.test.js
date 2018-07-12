@@ -31,3 +31,17 @@ it("non-existing template should fail", () => {
   expect(res.stderr).toBe("foo.yml can't be found\n");
   expect(res.code).toBe(1);
 });
+
+it("invalid yaml should fail", () => {
+  const res = run("--template test/templates/empty-template.yml --dry-run");
+  expect(res.stdout).toBe("");
+  expect(res.stderr).toMatchSnapshot();
+  expect(res.code).toBe(1);
+});
+
+it("empty template file should fail", () => {
+  const res = run("--template test/templates/empty-template.yml --dry-run");
+  expect(res.stdout).toBe("");
+  expect(res.stderr).toMatchSnapshot();
+  expect(res.code).toBe(1);
+});
