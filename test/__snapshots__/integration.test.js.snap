@@ -39,6 +39,16 @@ build script:
 "
 `;
 
+exports[`should resolve private image names 1`] = `
+"executing step in \\"account-name/openjdk:8\\"
+docker command:
+	docker run  -P -v PWD:/ws -w /ws account-name/openjdk:8 sh .bbrun.sh
+build script:
+	set -e
+	echo \\"testing stuff\\"
+"
+`;
+
 exports[`single step pipeline executes the default step with no arguments 1`] = `
 "executing step in \\"ubuntu\\"
 docker command:

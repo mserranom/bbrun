@@ -1,8 +1,8 @@
 # Bitbucket Pipelines Runner
-`bbrun` is a  command line tool to execute [Bitbucket Pipelines](https://confluence.atlassian.com/bitbucket/configure-bitbucket-pipelines-yml-792298910.html) locally.
+
+`bbrun` is a command line tool to execute [Bitbucket Pipelines](https://confluence.atlassian.com/bitbucket/configure-bitbucket-pipelines-yml-792298910.html) locally.
 
 [![Build Status](https://travis-ci.org/mserranom/bbrun.svg?branch=master)](https://travis-ci.org/mserranom/bbrun)
-
 
 ## Install
 
@@ -61,6 +61,11 @@ hello world!
       $ bbrun test --env EDITOR=vim
       $ bbrun test --env "EDITOR=vim, USER=root"
 ```
+
+## Caveats
+
+- Not all Bitbucket features are covered, check [open issues](https://github.com/mserranom/bbrun/issues) for an overview of the roadmap.
+- [Private images](https://confluence.atlassian.com/bitbucket/use-docker-images-as-build-environments-792298897.html) are supported, but the user has to login in the Docker Registry before executing `bbrun` (thus credentials in the file are ignored).
 
 ## Build and Test
 
