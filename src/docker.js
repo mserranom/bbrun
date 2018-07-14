@@ -7,7 +7,6 @@ const child_process = require("child_process");
 const BUILD_SCRIPT = ".bbrun.sh";
 
 function deleteBuildScript() {
-	return;
   if (fs.existsSync(BUILD_SCRIPT)) {
     fs.unlinkSync(BUILD_SCRIPT);
   }
