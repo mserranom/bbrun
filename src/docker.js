@@ -7,6 +7,7 @@ const child_process = require("child_process");
 const BUILD_SCRIPT = ".bbrun.sh";
 
 function deleteBuildScript() {
+	return;
   if (fs.existsSync(BUILD_SCRIPT)) {
     fs.unlinkSync(BUILD_SCRIPT);
   }
@@ -32,8 +33,8 @@ function checkExists() {
 
 function run(commands, image, dryRun, interactive, workDir) {
   const cmd = interactive
-    ? `run -P -it --entrypoint=/bin/bash -v ${pwd()}:${workDir} -w ${workDir} ${image}`
-    : `run  -P -v ${pwd()}:${workDir} -w ${workDir} ${image} sh ${BUILD_SCRIPT}`;
+    ? `run --rm -P -it --entrypoint=/bin/bash -v ${pwd()}:${workDir} -w ${workDir} ${image}`
+    : `run --rm -P -v ${pwd()}:${workDir} -w ${workDir} ${image} sh ${BUILD_SCRIPT}`;
 
   if (dryRun) {
     console.log(`docker command:\n\tdocker ${cmd}`);
