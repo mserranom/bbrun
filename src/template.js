@@ -2,18 +2,19 @@
 const fs = require("fs");
 const yaml = require("js-yaml");
 const assert = require("check-types").assert;
+const { extractPipelineName } = require("./util");
 
+const BB_IMAGE = "atlassian/default-image:latest";
 const BB_TEMPLATE_DOC =
   "https://confluence.atlassian.com/bitbucket/configure-bitbucket-pipelines-yml-792298910.html";
 
-function read(bbTemplate) {
+function readTemplate(bbTemplate) {
   if (!fs.existsSync(bbTemplate)) {
     throw new Error(`${bbTemplate} can't be found`);
   }
 
-  const bbConfig = yaml.safeLoad(fs.readFileSync(bbTemplate, "utf8"));
-  validate(bbConfig);
-  return bbConfig;
+  const config = yaml.safeLoad(fs.readFileSync(bbTemplate, "utf8"));
+  return new Template(config);
 }
 
 function parse(config) {
@@ -43,25 +44,6 @@ function findPipeline(config, pipeline, pipelineName) {
   }
 }
 
-function findNamedStep(config, stepName, pipeline, pipelineName) {
-  assert.nonEmptyObject(config);
-  assert.nonEmptyString(stepName);
-  pipeline = pipeline || "default";
-
-  const pipelineObject = findPipeline(config, pipeline, pipelineName);
-  assert.nonEmptyArray(
-    pipelineObject,
-    `pipeline "${pipeline}:${pipelineName}" not found`
-  );
-
-  const stepObject = findStepInPipeline(pipelineObject, stepName);
-  assert.nonEmptyObject(
-    stepObject,
-    `couldn't find step with name="${stepName}"`
-  );
-  return stepObject.step;
-}
-
 function findStepInPipeline(pipeline, stepName) {
   for (let i = 0; i < pipeline.length; i++) {
     if (pipeline[i].step && pipeline[i].step.name === stepName) {
@@ -89,8 +71,50 @@ function validate(config) {
   }
 }
 
-module.exports.read = read;
-module.exports.findNamedStep = findNamedStep;
-module.exports.findPipeline = findPipeline;
+class Pipeline {
+  constructor(config) {
+    this.config = config;
+  }
+
+  getStep(stepName) {
+    return findStepInPipeline(this.config, stepName);
+  }
+
+  getAllSteps() {
+    const result = [];
+
+    const findStepsRecursively = stepList => {
+      stepList.forEach(x => {
+        if (x.step) {
+          result.push(x.step);
+        } else if (x.parallel) {
+          findStepsRecursively(x.parallel);
+        }
+      });
+    };
+
+    findStepsRecursively(this.config);
+    return result;
+  }
+}
+
+class Template {
+  constructor(config) {
+    validate(config);
+    this.config = config;
+  }
+
+  getPipeline(name = "default") {
+    const { pipeline, pipelineName } = extractPipelineName(name);
+    const pipelineConfig = findPipeline(this.config, pipeline, pipelineName);
+    return new Pipeline(pipelineConfig);
+  }
+
+  getRootImage() {
+    return this.config.image ? this.config.image : BB_IMAGE;
+  }
+}
+
+module.exports.readTemplate = readTemplate;
 module.exports.parse = parse;
-module.exports.validate = validate;
+module.exports.Template = Template;
