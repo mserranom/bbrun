@@ -1,0 +1,18 @@
+pipelines:
+  default:
+    - step:
+        script:
+          - echo "default step"
+    - parallel:
+      - step:
+          name: parallel_step_2
+          script:
+            - echo "parallel step2"
+      - step:
+          name: Step Three
+          script:
+            - echo "parallel step3"
+    - step: 
+        name: step_4
+        script:
+            - echo "step4" 

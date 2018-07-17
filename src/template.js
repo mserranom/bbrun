@@ -23,16 +23,6 @@ function parse(config) {
   return jsonConfig;
 }
 
-function getSteps(config) {
-  return config.pipelines.default.map(x => {
-    return {
-      script: x.step.script,
-      image: x.step.image ? x.step.image : config.image,
-      name: x.step.name ? x.step.name : "default"
-    };
-  });
-}
-
 function findPipeline(config, pipeline, pipelineName) {
   assert.nonEmptyObject(config);
   assert.nonEmptyString(pipeline);
@@ -64,12 +54,22 @@ function findNamedStep(config, stepName, pipeline, pipelineName) {
     `pipeline "${pipeline}:${pipelineName}" not found`
   );
 
-  const stepObject = pipelineObject.find(x => x.step.name === stepName);
+  const stepObject = findStepInPipeline(pipelineObject, stepName);
   assert.nonEmptyObject(
     stepObject,
     `couldn't find step with name="${stepName}"`
   );
   return stepObject.step;
+}
+
+function findStepInPipeline(pipeline, stepName) {
+  for (let i = 0; i < pipeline.length; i++) {
+    if (pipeline[i].step && pipeline[i].step.name === stepName) {
+      return pipeline[i];
+    } else if (pipeline[i].parallel) {
+      return findStepInPipeline(pipeline[i].parallel, stepName);
+    }
+  }
 }
 
 function validate(config) {
@@ -90,7 +90,6 @@ function validate(config) {
 }
 
 module.exports.read = read;
-module.exports.getSteps = getSteps;
 module.exports.findNamedStep = findNamedStep;
 module.exports.findPipeline = findPipeline;
 module.exports.parse = parse;
