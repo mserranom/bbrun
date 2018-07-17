@@ -18,6 +18,7 @@ if [ ! -z "$(git status --untracked-files=no --porcelain)" ]; then
   echo "there are uncommitted changes in tracked files"
   exit 1
 fi
+git pull origin master
 
 
 echo " -- updating version"
