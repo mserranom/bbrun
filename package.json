@@ -7,7 +7,9 @@
   "bin": "./index.js",
   "scripts": {
     "prettier": "prettier --write *.js src/*.js test/*.js",
-    "test": "jest"
+    "test": "jest test/*.js",
+    "test-examples": "jest examples/*.js",
+    "test-all": "jest"
   },
   "repository": {
     "type": "git",

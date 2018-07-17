@@ -34,6 +34,8 @@ running "build" in "atlassian/default-image" image...
 hello world!
 ```
 
+Check the [examples](https://github.com/mserranom/bbrun/tree/master/examples) and its [tests](https://github.com/mserranom/bbrun/blob/master/examples/examples.test.js) to learn different use cases.
+
 ### Options
 
 ```
@@ -71,6 +73,12 @@ hello world!
 
 ```bash
 npm install && npm test
+```
+
+To execute the tests under [examples](https://github.com/mserranom/bbrun/tree/master/examples) (which are not run by CI yet):
+
+```bash
+npm run test-examples
 ```
 
 ### Install locally
