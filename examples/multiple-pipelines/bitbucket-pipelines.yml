@@ -1,0 +1,33 @@
+image: ubuntu
+pipelines:
+  default:
+    - step:
+          script:
+            - echo "default step"
+    - step:
+          name: step2
+          script:
+            - echo "step2 executed"
+    - step:
+          image: ubuntu
+          name: Step Three
+          script:
+            - echo "step3 executed in ubuntu"
+  branches:
+    '**':
+      - step:
+          script:
+            - echo "default step for any branch"
+      - step:
+          name: branch step 2
+          script:
+            - echo "step2 in any branch"
+    master:
+      - step:
+          script:
+            - echo "default step in master branch"
+      - step:
+          name: master_step_2
+          script:
+            - echo "step2 in master branch"
+     
