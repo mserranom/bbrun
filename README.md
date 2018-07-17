@@ -75,6 +75,12 @@ Check the [examples](https://github.com/mserranom/bbrun/tree/master/examples) an
 npm install && npm test
 ```
 
+To execute the tests under [examples](https://github.com/mserranom/bbrun/tree/master/examples) (which are not run by CI yet):
+
+```bash
+npm run test-examples
+```
+
 ### Install locally
 
 ```bash
