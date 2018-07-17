@@ -2,7 +2,7 @@
 
 `bbrun` is a command line tool to execute [Bitbucket Pipelines](https://confluence.atlassian.com/bitbucket/configure-bitbucket-pipelines-yml-792298910.html) locally.
 
-[![Build Status](https://travis-ci.org/mserranom/bbrun.svg?branch=master)](https://travis-ci.org/mserranom/bbrun)
+[![Build Status](https://travis-ci.org/mserranom/bbrun.svg?branch=master)](https://travis-ci.org/mserranom/bbrun) [![npm version](https://badge.fury.io/js/bbrun.svg)](https://badge.fury.io/js/bbrun)
 
 ## Install
 
