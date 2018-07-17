@@ -39,6 +39,44 @@ build script:
 "
 `;
 
+exports[`parallel steps executes all steps when step name is not provided 1`] = `
+"executing step in \\"atlassian/default-image:latest\\"
+docker command:
+	docker run --rm -P -v PWD:/ws -w /ws atlassian/default-image:latest bash .bbrun.sh
+build script:
+	set -e
+	echo \\"default step\\"
+executing step in \\"atlassian/default-image:latest\\"
+docker command:
+	docker run --rm -P -v PWD:/ws -w /ws atlassian/default-image:latest bash .bbrun.sh
+build script:
+	set -e
+	echo \\"parallel step2\\"
+executing step in \\"atlassian/default-image:latest\\"
+docker command:
+	docker run --rm -P -v PWD:/ws -w /ws atlassian/default-image:latest bash .bbrun.sh
+build script:
+	set -e
+	echo \\"parallel step3\\"
+executing step in \\"atlassian/default-image:latest\\"
+docker command:
+	docker run --rm -P -v PWD:/ws -w /ws atlassian/default-image:latest bash .bbrun.sh
+build script:
+	set -e
+	echo \\"step4\\"
+"
+`;
+
+exports[`parallel steps individual steps from a parallel section can be executed 1`] = `
+"executing step \\"parallel_step_2\\" in \\"atlassian/default-image:latest\\"
+docker command:
+	docker run --rm -P -v PWD:/test_wd -w /test_wd atlassian/default-image:latest bash .bbrun.sh
+build script:
+	set -e
+	echo \\"parallel step2\\"
+"
+`;
+
 exports[`should resolve private image names 1`] = `
 "executing step in \\"account-name/openjdk:8\\"
 docker command:

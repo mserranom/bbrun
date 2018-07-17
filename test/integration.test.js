@@ -148,3 +148,21 @@ it("working directory is overriden", () => {
   expect(res.stderr).toBe("");
   expect(res.code).toBe(0);
 });
+
+describe("parallel steps", () => {
+  it("executes all steps when step name is not provided", () => {
+    const res = run("--template test/templates/parallel-steps.yml --dry-run");
+    expect(norm(res.stdout)).toMatchSnapshot();
+    expect(res.stderr).toBe("");
+    expect(res.code).toBe(0);
+  });
+
+  it("individual steps from a parallel section can be executed", () => {
+    const res = run(
+      "parallel_step_2 --template test/templates/parallel-steps.yml --work-dir /test_wd --dry-run"
+    );
+    expect(norm(res.stdout)).toMatchSnapshot();
+    expect(res.stderr).toBe("");
+    expect(res.code).toBe(0);
+  });
+});

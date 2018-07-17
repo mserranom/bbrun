@@ -27,7 +27,13 @@ module.exports = function(options, stepName) {
     execStep(step);
   } else {
     const steps = template.findPipeline(config, pipeline, pipelineName);
-    steps.forEach(x => execStep(x.step));
+    steps.forEach(x => {
+      if (x.step) {
+        execStep(x.step);
+      } else if (x.parallel) {
+        x.parallel.forEach(parallelStep => execStep(parallelStep.step));
+      }
+    });
   }
 
   function execStep(step) {
