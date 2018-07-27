@@ -1,8 +1,8 @@
-const { parse, findNamedStep } = require("../src/template");
+const { parse, Template } = require("../src/template");
 
-describe("findNamedStep", () => {
+describe("Template", () => {
   it("finds the step by name on the default pipeline", () => {
-    const template = parse(`
+    const config = parse(`
             image: ubuntu
             pipelines:
                 default:
@@ -16,14 +16,16 @@ describe("findNamedStep", () => {
                             - echo "testing step2"
             
         `);
-    const step = findNamedStep(template, "step2");
+
+    const template = new Template(config);
+    const step = template.getPipeline().getStep("step2").step;
     expect(step).toMatchObject({
       name: "step2",
       script: ['echo "testing step2"']
     });
   });
   it("finds the step by name on the tags pipeline", () => {
-    const template = parse(`
+    const config = parse(`
             image: ubuntu
             pipelines:
                 default:
@@ -39,29 +41,11 @@ describe("findNamedStep", () => {
                                 - echo "testing step2"
             
         `);
-    const step = findNamedStep(template, "step2", "tags", "v2");
+    const template = new Template(config);
+    const step = template.getPipeline("tags:v2").getStep("step2").step;
     expect(step).toMatchObject({
       name: "step2",
       script: ['echo "testing step2"']
     });
-  });
-  it("throws an error when a step name doesn't exist", () => {
-    const template = parse(`
-            image: ubuntu
-            pipelines:
-                default:
-                    - step:
-                        name: step1
-                        script:
-                            - echo "testing step1"
-                    - step:
-                        name: step2
-                        script:
-                            - echo "testing step2"
-            
-        `);
-    expect(() => findNamedStep(template, "step3")).toThrowError(
-      `couldn't find step with name="step3"`
-    );
   });
 });
