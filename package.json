@@ -1,38 +1,38 @@
 {
-  "name": "bbrun",
-  "version": "0.10.1",
-  "description": "Run your Bitbucket Pipelines locally",
-  "main": "index.js",
-  "preferGlobal": true,
-  "bin": "./index.js",
-  "scripts": {
-    "prettier": "prettier --write *.js src/*.js test/*.js",
-    "test": "jest test/*.js",
-    "test-examples": "jest examples/*.js",
-    "test-all": "jest"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/mserranom/bbrun.git"
-  },
-  "author": "mserranom@gmail.com",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/mserranom/bbrun/issues"
-  },
-  "homepage": "https://github.com/mserranom/bbrun#readme",
-  "engines": {
-    "node": ">=8.5.0",
-    "npm": ">=5.4.2"
-  },
-  "dependencies": {
-    "check-types": "7.3.0",
-    "js-yaml": "3.10.0",
-    "meow": "4.0.0",
-    "shelljs": "0.7.8"
-  },
-  "devDependencies": {
-    "jest": "21.2.1",
-    "prettier": "1.7.4"
-  }
+    "name": "bbrun",
+    "version": "0.10.1",
+    "description": "Run your Bitbucket Pipelines locally",
+    "main": "index.js",
+    "preferGlobal": true,
+    "bin": "./index.js",
+    "scripts": {
+        "prettier": "prettier --write *.js src/*.js test/*.js",
+        "test": "jest test/*.js",
+        "test-examples": "jest examples/*.js",
+        "test-all": "jest"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/mserranom/bbrun.git"
+    },
+    "author": "mserranom@gmail.com",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/mserranom/bbrun/issues"
+    },
+    "homepage": "https://github.com/mserranom/bbrun#readme",
+    "engines": {
+        "node": ">=8.5.0",
+        "npm": ">=5.4.2"
+    },
+    "dependencies": {
+        "check-types": "7.3.0",
+        "js-yaml": "3.13.1",
+        "meow": "4.0.0",
+        "shelljs": "0.7.8"
+    },
+    "devDependencies": {
+        "jest": "24.9.0",
+        "prettier": "1.7.4"
+    }
 }
