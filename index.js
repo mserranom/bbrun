@@ -61,7 +61,7 @@ Examples:
       },
       "ignore-folder": {
         type: "string",
-        alias: "if"
+        alias: "f"
       }
     }
   }
