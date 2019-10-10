@@ -30,11 +30,11 @@ function checkExists() {
   }
 }
 
-function run(commands, image, dryRun, interactive, workDir, ignoreFolders) {
-  if (typeof ignoreFolders === "string") {
-    ignoreFolders = [ignoreFolders];
+function run(commands, image, dryRun, interactive, workDir, ignoreFolder) {
+  if (typeof ignoreFolder === "string") {
+    ignoreFolder = [ignoreFolder];
   }
-  const ignore = ignoreFolders.map((f) => {
+  const ignore = ignoreFolder.map((f) => {
     return `-v ${pwd()}/empty/:${workDir}/${f}`;
   }).join(' ');
 
