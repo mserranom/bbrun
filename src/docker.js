@@ -3,12 +3,19 @@ const exec = require("shelljs").exec;
 const pwd = require("shelljs").pwd;
 const fs = require("fs");
 const child_process = require("child_process");
+const path = require('path');
+const os = require('os');
 
 const BUILD_SCRIPT = ".bbrun.sh";
+const TMP_DIR = '.bbrun';
 
 function deleteBuildScript() {
   if (fs.existsSync(BUILD_SCRIPT)) {
     fs.unlinkSync(BUILD_SCRIPT);
+  }
+
+  if (fs.existsSync(`./${TMP_DIR}`)) {
+    deleteFolderSync(`./${TMP_DIR}`);
   }
 }
 
@@ -31,12 +38,15 @@ function checkExists() {
 }
 
 function run(commands, image, dryRun, interactive, workDir, ignoreFolder) {
-  if (typeof ignoreFolder === "string") {
-    ignoreFolder = [ignoreFolder];
+  let ignore = '';
+  if (typeof ignoreFolder !== "undefined") {
+    if (typeof ignoreFolder === "string") {
+      ignoreFolder = [ignoreFolder];
+    }
+    ignore = ignoreFolder.map((f) => {
+      return `-v ${pwd()}/${TMP_DIR}/:${workDir}/${f}`;
+    }).join(' ');
   }
-  const ignore = ignoreFolder.map((f) => {
-    return `-v ${pwd()}/empty/:${workDir}/${f}`;
-  }).join(' ');
 
   const cmd = interactive
     ? `run --rm -P -it --entrypoint=/bin/bash -v ${pwd()}:${workDir} ${ignore} -w ${workDir} ${image}`
@@ -65,6 +75,22 @@ function extractImageName(image) {
   } else {
     throw new Error(`"${JSON.stringify(image)}" is not a valid image`);
   }
+}
+
+function deleteFolderSync(path) {
+    var files = [];
+    if( fs.existsSync(path) ) {
+        files = fs.readdirSync(path);
+        files.forEach(function(file,index){
+            var curPath = path + "/" + file;
+            if(fs.lstatSync(curPath).isDirectory()) { // recurse
+                deleteFolderSync(curPath);
+            } else { // delete file
+                fs.unlinkSync(curPath);
+            }
+        });
+        fs.rmdirSync(path);
+    }
 }
 
 module.exports.checkExists = checkExists;
