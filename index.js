@@ -57,6 +57,10 @@ Examples:
       "dry-run": {
         type: "boolean",
         alias: "d"
+      },
+      "ignore-folders": {
+        type: "string",
+        alias: "if"
       }
     }
   }

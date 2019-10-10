@@ -30,10 +30,17 @@ function checkExists() {
   }
 }
 
-function run(commands, image, dryRun, interactive, workDir) {
+function run(commands, image, dryRun, interactive, workDir, ignoreFolders) {
+  if (typeof ignoreFolders === "string") {
+    ignoreFolders = [ignoreFolders];
+  }
+  const ignore = ignoreFolders.map((f) => {
+    return `-v ${pwd()}/empty/:${workDir}/${f}`;
+  }).join(' ');
+
   const cmd = interactive
-    ? `run --rm -P -it --entrypoint=/bin/bash -v ${pwd()}:${workDir} -w ${workDir} ${image}`
-    : `run --rm -P -v ${pwd()}:${workDir} -w ${workDir} ${image} bash ${BUILD_SCRIPT}`;
+    ? `run --rm -P -it --entrypoint=/bin/bash -v ${pwd()}:${workDir} ${ignore} -w ${workDir} ${image}`
+    : `run --rm -P -v ${pwd()}:${workDir} ${ignore} -w ${workDir} ${image} bash ${BUILD_SCRIPT}`;
 
   if (dryRun) {
     console.log(`docker command:\n\tdocker ${cmd}`);
