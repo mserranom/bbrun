@@ -21,18 +21,14 @@
     "url": "https://github.com/mserranom/bbrun/issues"
   },
   "homepage": "https://github.com/mserranom/bbrun#readme",
-  "engines": {
-    "node": ">=8.5.0",
-    "npm": ">=5.4.2"
-  },
   "dependencies": {
-    "check-types": "7.3.0",
-    "js-yaml": "3.13.1",
-    "meow": "4.0.0",
-    "shelljs": "0.7.8"
+    "check-types": "11.0.x",
+    "js-yaml": "3.13.x",
+    "meow": "4.0.x",
+    "shelljs": "0.8.x"
   },
   "devDependencies": {
-    "jest": "21.2.1",
-    "prettier": "1.7.4"
+    "jest": "^24.9.0",
+    "prettier": "^1.19.1"
   }
 }
