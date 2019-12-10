@@ -27,7 +27,7 @@
   },
   "dependencies": {
     "check-types": "7.3.0",
-    "js-yaml": "3.10.0",
+    "js-yaml": "3.13.1",
     "meow": "4.0.0",
     "shelljs": "0.7.8"
   },
