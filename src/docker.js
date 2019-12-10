@@ -50,7 +50,7 @@ function run(commands, image, dryRun, interactive, workDir, ignoreFolder) {
 
   const cmd = interactive
     ? `run --rm -P -it --entrypoint=/bin/bash -v ${pwd()}:${workDir} ${ignore} -w ${workDir} ${image}`
-    : `run --rm -P -v ${pwd()}:${workDir} ${ignore} -w ${workDir} ${image} bash ${BUILD_SCRIPT}`;
+    : `run --rm -P --entrypoint="" --net=host -v ${pwd()}:${workDir} ${ignore} -w ${workDir} ${image} bash ${BUILD_SCRIPT}`;
 
   if (dryRun) {
     console.log(`docker command:\n\tdocker ${cmd}`);
