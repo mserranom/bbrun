@@ -8,7 +8,7 @@ function exec(script, image, flags) {
     "set -e",
     script
   );
-  docker.run(commands, image, flags.dryRun, flags.interactive, flags.workDir, flags.ignoreFolder);
+  docker.run(commands, image, flags.dryRun, flags.interactive, flags.workDir, flags.ignoreFolder, flags.keepContainer);
 }
 
 module.exports.exec = exec;
