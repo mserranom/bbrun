@@ -17,10 +17,10 @@ function extractPipelineName(pipeline) {
 }
 
 function parseVars(envArg) {
-  return envArg
-    .trim()
-    .split(",")
-    .map(x => x.trim());
+  // @see https://stackoverflow.com/questions/67978415/complex-assignments-with-comma-separator
+  return envArg.match(/(?=\b[a-z])\w+=(?:(['"])(?:(?!\1).)*\1|[^,]*)/gi);
+  // Alternative:
+  // return envArg.split(/,\s*(?=[A-Z]+=)/).map(x => x.trim())
 }
 
 module.exports.extractPipelineName = extractPipelineName;
