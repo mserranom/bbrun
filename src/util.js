@@ -18,7 +18,7 @@ function extractPipelineName(pipeline) {
 
 function parseVars(envArg) {
   // @see https://stackoverflow.com/questions/67978415/complex-assignments-with-comma-separator
-  return envArg.match(/(?=\b[a-z])\w+=(?:(['"])(?:(?!\1).)*\1|[^,]*)/gi);
+  return envArg.match(/(?=\b[a-z])\w+=(?:(['"])(?:(?!\1).)*\1|[^,]*)/gi).map(x => x.trim());
   // Alternative:
   // return envArg.split(/,\s*(?=[A-Z]+=)/).map(x => x.trim())
 }

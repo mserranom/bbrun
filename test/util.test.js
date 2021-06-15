@@ -82,4 +82,11 @@ describe("parseVars function", () => {
       "THREE=three",
     ]);
   });
+  it("should trim the spaces", () => {
+    expect(parseVars("ONE='{}' , TWO=two , THREE=three ")).toMatchObject([
+      "ONE='{}'",
+      "TWO=two",
+      "THREE=three",
+    ]);
+  });
 });
