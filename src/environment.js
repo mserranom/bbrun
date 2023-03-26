@@ -17,10 +17,7 @@ function load(location) {
 }
 
 function parseVars(envArg) {
-  return envArg
-    .trim()
-    .split(",")
-    .map(x => x.trim());
+  return envArg.match(/(?=\b[a-z])\w+=(?:(['"])(?:(?!\1).)*\1|[^,]*)/gi).map(x => x.trim());
 }
 
 module.exports.save = save;
