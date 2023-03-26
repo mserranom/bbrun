@@ -18,6 +18,7 @@ Options
     --dry-run (-d), performs dry run, printing the docker command
     --interactive (-i), starts an interactive bash session in the container
     --ignore-folder (-if), maps the folder to an empty folder (useful for forcing package managers to reinstall)
+    --keep-container (-k), does not remove the container after build (ignores --interactive)
     --help, prints this very guide
 
 Examples:
@@ -59,6 +60,10 @@ Examples:
       interactive: {
         type: "boolean",
         alias: "i"
+      },
+      "keep-container": {
+        type: "boolean",
+        alias: "k"
       },
       "dry-run": {
         type: "boolean",
