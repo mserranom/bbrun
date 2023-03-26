@@ -13,6 +13,7 @@ Options
     --template (-t), build template, defaults to "bitbucket-pipelines.yml"
     --pipeline (-p), pipeline to execute. "default" if not provided
     --env (-e), define environment variables for execution
+    --envfile (-ef), define environment file variables for execution
     --work-dir (-w), docker working directory, defaults to "ws"
     --dry-run (-d), performs dry run, printing the docker command
     --interactive (-i), starts an interactive bash session in the container
@@ -46,6 +47,10 @@ Examples:
       env: {
         type: "string",
         alias: "e"
+      },
+      envfile: {
+        type: "string",
+        alias: "ef"
       },
       "work-dir": {
         type: "string",
