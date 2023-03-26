@@ -1,5 +1,5 @@
 const docker = require("./docker");
-const { parseVars, load } = require("./environment");
+const { parseVars, load, loadBitbucketEnv } = require("./environment");
 
 function exec(script, image, flags) {
   let environmentVars = flags.env ? parseVars(flags.env) : [];
@@ -9,6 +9,7 @@ function exec(script, image, flags) {
   }
   const commands = [].concat(
     environmentVars.map((x) => { return x && (x.includes('export') ? x : `export ${x}`); }),
+    loadBitbucketEnv(),
     'set -e',
     script
   );
