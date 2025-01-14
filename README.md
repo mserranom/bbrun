@@ -4,6 +4,10 @@
 
 [![Build Status](https://github.com/mserranom/bbrun/workflows/Node%20CI/badge.svg)](https://github.com/mserranom/bbrun/actions?query=workflow%3A%22Node+CI%22)[![npm version](https://badge.fury.io/js/bbrun.svg)](https://badge.fury.io/js/bbrun)
 
+## ⚠️ Status 
+
+This project is no longer maintained.
+
 ## Install
 
 Install `bbrun` with `npm`:
