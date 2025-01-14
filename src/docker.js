@@ -37,7 +37,7 @@ function checkExists() {
   }
 }
 
-function run(commands, image, dryRun, interactive, workDir, ignoreFolder) {
+function run(commands, image, dryRun, interactive, workDir, ignoreFolder, keepContainer) {
   let ignore = '';
   if (typeof ignoreFolder !== "undefined") {
     if (typeof ignoreFolder === "string") {
@@ -48,9 +48,15 @@ function run(commands, image, dryRun, interactive, workDir, ignoreFolder) {
     }).join(' ');
   }
 
+  const rm = keepContainer ? "" : "--rm";
+  if (keepContainer) {
+    // keepContainer and interactive does not work together
+    interactive = false
+  }
+
   const cmd = interactive
-    ? `run --rm -P -it --entrypoint=/bin/bash -v ${pwd()}:${workDir} -w ${workDir} ${image}`
-    : `run --rm -P -v ${pwd()}:${workDir} -w ${workDir} ${image} bash ${BUILD_SCRIPT}`;
+    ? `run ${rm} -P -it --entrypoint=/bin/bash -v ${pwd()}:${workDir} -w ${workDir} ${image}`
+    : `run ${rm} -P -v ${pwd()}:${workDir} -w ${workDir} ${image} bash ${BUILD_SCRIPT}`;
 
   if (dryRun) {
     console.log(`docker command:\n\tdocker ${cmd}`);

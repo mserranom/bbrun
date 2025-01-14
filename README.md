@@ -49,9 +49,11 @@ Check the [examples](https://github.com/mserranom/bbrun/tree/master/examples) an
   Options
       --template (-t), pipeline template, defaults to "bitbucket-pipelines.yml"
       --env (-e),  define environment variables for execution
+      --envfile (-ef), define environment file variables for execution
       --dry-run (-d),  performs dry run, printing the docker command
       --interactive (-i), starts an interactive bash session in the container
       --ignore-folder (-f), adds the folder as an empty volume (useful for forcing pipeline to install packages etc)
+      --keep-container (-k), does not remove the container after build (ignores --interactive)
       --help, prints this very guide
 
   Examples:
